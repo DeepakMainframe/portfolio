@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deepak Kumar - Mainframe Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E1620;
+    --bg-alt:#121C28;
+    --panel:#16212E;
+    --text:#E7E6DD;
+    --text-dim:#93A0AA;
+    --green:#4FD1A5;
+    --amber:#F2A65A;
+    --line:rgba(231,230,221,0.12);
+    --font-sans:'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono:'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+  #home, #journey, #projects, #learning, #writing, #life, #contact{
+    scroll-margin-top:84px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  .prose{
+    max-width:640px;
+  }
+
+  /* ---------- Nav ---------- */
+  #view-main header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(14,22,32,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+    font-family:var(--font-mono);
+    font-size:0.86rem;
+  }
+  .brand{
+    font-family:var(--font-sans);
+    font-weight:600;
+    font-size:1rem;
+    letter-spacing:0.01em;
+  }
+  .brand span{color:var(--green);}
+  .nav-links{
+    display:flex; gap:26px;
+    list-style:none;
+  }
+  .nav-links a{
+    color:var(--text-dim);
+    transition:color .15s ease;
+    padding:4px 0;
+    border-bottom:1px solid transparent;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{
+    color:var(--text);
+    border-bottom-color:var(--green);
+  }
+  .nav-right{display:flex; align-items:center; gap:18px;}
+  .icon-link{
+    width:18px; height:18px; opacity:0.75; transition:opacity .15s ease;
+  }
+  .icon-link:hover{opacity:1;}
+  .btn{
+    font-family:var(--font-mono);
+    font-size:0.82rem;
+    padding:9px 16px;
+    border-radius:3px;
+    border:1px solid var(--green);
+    color:var(--green);
+    white-space:nowrap;
+    transition:background .15s ease, color .15s ease;
+  }
+  .btn:hover{background:var(--green); color:var(--bg);}
+  .btn-amber{border-color:var(--amber); color:var(--amber);}
+  .btn-amber:hover{background:var(--amber); color:var(--bg);}
+
+  @media (max-width:760px){
+    .nav-links{display:none;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:44px 0 56px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:stretch;
+  }
+  .hero-left{display:flex; flex-direction:column;}
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:0.82rem;
+    color:var(--green);
+    margin-bottom:18px;
+  }
+  .eyebrow::before{content:"$ "; color:var(--text-dim);}
+  h1{
+    font-size:clamp(2.2rem, 5vw, 3.4rem);
+    font-weight:600;
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    margin-bottom:20px;
+  }
+  h1 em{
+    font-style:normal;
+    color:var(--amber);
+  }
+  .hero p.lede{
+    font-size:1.08rem;
+    color:var(--text-dim);
+    max-width:520px;
+    margin-bottom:32px;
+  }
+  .status-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:22px 24px;
+    margin-top:28px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .status-row{
+    display:flex; gap:12px; align-items:baseline;
+    padding:9px 0;
+  }
+  .status-row + .status-row{border-top:1px solid var(--line);}
+  .status-dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--green);
+    flex:none;
+    position:relative; top:-1px;
+  }
+  .status-row:nth-child(2) .status-dot{background:var(--amber);}
+  .status-label{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    color:var(--text-dim);
+    width:88px;
+    flex:none;
+  }
+  .status-value{font-size:0.9rem; color:var(--text);}
+
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+
+  /* photo */
+  .hero-right{display:flex; flex-direction:column; gap:20px;}
+  .hero-photo{
+    width:100%; aspect-ratio:4/4.6; max-width:420px;
+    border-radius:8px; overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--panel);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-size:0.8rem; color:var(--text-dim);
+    text-align:center; padding:20px;
+  }
+  .hero-photo img{width:100%; height:100%; object-fit:cover; object-position:center 12%; display:block;}
+
+  /* terminal graphic */
+  .terminal{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    max-width:420px;
+    box-shadow:0 20px 60px -20px rgba(0,0,0,0.6);
+  }
+  .terminal-bar{
+    display:flex; gap:6px;
+    padding:10px 14px;
+    border-bottom:1px solid var(--line);
+  }
+  .terminal-bar span{
+    width:9px; height:9px; border-radius:50%;
+    background:rgba(231,230,221,0.18);
+  }
+  .terminal-body{
+    padding:20px 18px 24px;
+    font-family:var(--font-mono);
+    font-size:0.8rem;
+    color:var(--text-dim);
+    line-height:1.8;
+  }
+  .terminal-body .l1{color:var(--green);}
+  .terminal-body .l2{color:var(--text);}
+  .terminal-body .l3{color:var(--amber);}
+  .cursor{
+    display:inline-block;
+    width:7px; height:14px;
+    background:var(--amber);
+    vertical-align:middle;
+    animation:blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  /* ---------- Strip ---------- */
+  .strip{
+    border-bottom:1px solid var(--line);
+    background:var(--bg-alt);
+  }
+  .strip-grid{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    padding:34px 0;
+    gap:20px;
+  }
+  .strip-item{font-family:var(--font-mono);}
+  .strip-item .label{font-size:0.88rem; color:var(--text); margin-bottom:4px;}
+  .strip-item .sub{font-size:0.74rem; color:var(--text-dim); line-height:1.5; min-height:2.25em;}
+  @media (max-width:900px){
+    .strip-grid{grid-template-columns:repeat(2, 1fr); row-gap:24px;}
+  }
+
+  /* ---------- Section shell ---------- */
+  section{padding:80px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:44px; gap:20px; flex-wrap:wrap;
+  }
+  h2{
+    font-size:1.7rem;
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .section-head p{color:var(--text-dim); font-size:0.98rem;}
+  .see-all{
+    font-family:var(--font-mono);
+    font-size:0.8rem;
+    color:var(--green);
+    white-space:nowrap;
+  }
+
+  /* ---------- Journey timeline ---------- */
+  .timeline{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    top:11px; left:0; right:0;
+    height:1px;
+    background:var(--line);
+  }
+  .t-line-fill{
+    position:absolute;
+    top:11px; left:0;
+    height:1px;
+    width:0%;
+    background:linear-gradient(90deg, var(--green), var(--amber));
+    transition:width 1.1s cubic-bezier(.2,.7,.2,1);
+  }
+  .t-line-fill.in-view{width:100%;}
+  .t-item{position:relative; padding-right:24px;}
+  .t-dot{
+    width:11px; height:11px; border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--green);
+    margin-bottom:22px;
+    position:relative; z-index:2;
+  }
+  .t-item.amber-stage .t-dot{border-color:var(--amber);}
+  .t-item h3{font-size:1.05rem; font-weight:600; margin-bottom:8px;}
+  .t-tag{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    color:var(--text-dim);
+    display:block;
+    margin-bottom:10px;
+  }
+  .t-item p{font-size:0.92rem; color:var(--text-dim);}
+  @media (max-width:800px){
+    .timeline{grid-template-columns:1fr; gap:36px;}
+    .timeline::before, .t-line-fill{display:none;}
+  }
+
+  /* ---------- Card grids ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+  .card{
+    background:var(--bg);
+    padding:26px 22px;
+    transition:background .15s ease;
+    display:flex;
+    flex-direction:column;
+  }
+  .card p{flex:1;}
+  a.card{cursor:pointer;}
+  .card:hover{background:var(--bg-alt);}
+  .card h3{font-size:1rem; font-weight:600; margin-bottom:8px;}
+  .card p{font-size:0.86rem; color:var(--text-dim); margin-bottom:16px;}
+  .tag{
+    font-family:var(--font-mono);
+    font-size:0.7rem;
+    color:var(--green);
+    border:1px solid rgba(79,209,165,0.35);
+    padding:3px 8px;
+    border-radius:3px;
+    display:inline-block;
+  }
+  .tag.amber{color:var(--amber); border-color:rgba(242,166,90,0.35);}
+  @media (max-width:800px){
+    .grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:480px){
+    .grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Life section ---------- */
+  .life-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1.2fr;
+    gap:20px;
+  }
+  .life-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:26px;
+    display:block;
+    transition:background .15s ease;
+  }
+  a.life-card{cursor:pointer;}
+  a.life-card:hover{background:var(--bg-alt);}
+  .life-card h3{font-size:1rem; margin-bottom:8px;}
+  .life-card p{font-size:0.88rem; color:var(--text-dim);}
+  .quote-card{
+    display:flex; flex-direction:column; justify-content:center;
+    border-left:2px solid var(--amber);
+  }
+  .quote-card p{
+    font-size:1.05rem; color:var(--text);
+    font-style:normal;
+    line-height:1.6;
+  }
+  @media (max-width:800px){
+    .life-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:50px 0 40px;
+    border-top:1px solid var(--line);
+  }
+  .footer-grid{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:20px;
+  }
+  .footer-brand{font-weight:600;}
+  .footer-tag{font-family:var(--font-mono); font-size:0.78rem; color:var(--text-dim); margin-top:4px;}
+  .footer-icons{display:flex; gap:16px;}
+  .footer-icons a{opacity:0.7; transition:opacity .15s ease;}
+  .footer-icons a:hover{opacity:1;}
+
+  ::selection{background:var(--amber); color:var(--bg);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--amber); outline-offset:2px;}
+</style>
+
+<style>
+#view-guide {
+  --bg: #0E1620;
+  --surface: #16212E;
+  --ink: #E7E6DD;
+  --muted: #93A0AA;
+  --accent: #4FD1A5;
+  --accent-dark: #F2A65A;
+  --line: rgba(231,230,221,0.12);
+  --soft: #121C28;
+  --shadow: none;
+  --radius: 8px;
+  --max: 1100px;
+}
+#view-guide * { box-sizing: border-box; }
+#view-guide html { scroll-behavior: smooth; scroll-padding-top: 82px; }
+#view-guide body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", -apple-system, sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+#view-guide a { color: inherit; text-decoration: none; }
+#view-guide .topbar {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(14,22,32,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px max(20px, calc((100vw - var(--max))/2));
+  gap: 22px;
+  position: sticky;
+}
+#view-guide .brand {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 600; font-size: 1.05rem;
+  white-space: nowrap;
+}
+#view-guide .brand-group { display: flex; align-items: center; gap: 16px; }
+#view-guide .nav-right-group { display: flex; align-items: center; gap: 16px; }
+#view-guide .back-link {
+  font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: .78rem; color: var(--muted);
+  white-space: nowrap; transition: color .15s ease;
+}
+#view-guide .back-link:hover { color: var(--accent); }
+#view-guide .contents-btn {
+  display: flex; align-items: center; gap: 6px;
+  border: 1px solid var(--line); background: var(--soft); color: var(--muted);
+  font-family: "IBM Plex Sans", sans-serif; font-weight: 500; font-size: .78rem;
+  padding: 7px 12px; border-radius: 6px; cursor: pointer;
+  transition: border-color .15s ease, color .15s ease;
+}
+#view-guide .contents-btn:hover { border-color: var(--accent); color: var(--accent); }
+#view-guide header.topbar { position: relative; }
+#view-guide nav {
+  display: none;
+  position: absolute; top: 100%; right: max(20px, calc((100vw - var(--max))/2));
+  margin-top: 8px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+  padding: 10px; box-shadow: 0 20px 50px -15px rgba(0,0,0,0.6);
+  grid-template-columns: repeat(2, minmax(160px, 1fr)); gap: 2px;
+  max-width: min(640px, calc(100vw - 40px));
+  font-family: "IBM Plex Mono", monospace;
+}
+#view-guide nav.open { display: grid; }
+#view-guide nav a { padding: 9px 12px; font-size: .82rem; color: var(--muted); white-space: nowrap; border-radius: 4px; transition: color .15s ease, background .15s ease; }
+#view-guide nav a:hover, #view-guide nav a.active { background: var(--soft); color: var(--accent); }
+#view-guide main, #view-guide .claude101-shell { max-width: var(--max); margin: auto; padding: 0 22px 70px; }
+#view-guide section { padding: 0; }
+#view-guide section + section { border-top: none; }
+#view-guide .hero { text-align: center; padding: 90px 15px 60px; border-bottom: none; }
+#view-guide .eyebrow, #view-guide .section-label {
+  color: var(--accent); font-family: "IBM Plex Mono", monospace; font-size: .76rem; font-weight: 500; letter-spacing: .1em;
+}
+#view-guide h1, #view-guide h2, #view-guide h3 { font-family: "IBM Plex Sans", sans-serif; line-height: 1.2; font-weight: 600; }
+#view-guide h1 { font-size: clamp(2.6rem, 7vw, 4.4rem); letter-spacing: -.02em; margin: 12px 0; color: var(--ink); }
+#view-guide h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); letter-spacing: -.01em; margin: 8px 0 28px; color: var(--ink); }
+#view-guide h3 { margin-top: 26px; font-size: 1.05rem; color: var(--ink); }
+#view-guide .hero-subtitle { max-width: 650px; margin: 0 auto; color: var(--muted); font-size: 1.08rem; }
+#view-guide .hero-actions { display: flex; justify-content: center; gap: 12px; margin: 30px 0 16px; flex-wrap: wrap; }
+#view-guide .button { padding: 11px 18px; border-radius: 4px; font-weight: 500; font-family: "IBM Plex Mono", monospace; font-size: .86rem; border: 1px solid var(--accent); color: var(--accent); transition: background .15s ease, color .15s ease; }
+#view-guide .button.primary { background: transparent; color: var(--accent); border-color: var(--accent); }
+#view-guide .button.primary:hover { background: var(--accent); color: var(--bg); }
+#view-guide .button.secondary { background: transparent; border-color: var(--accent-dark); color: var(--accent-dark); }
+#view-guide .button.secondary:hover { background: var(--accent-dark); color: var(--bg); }
+#view-guide .hero-note { color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: .8rem; margin-top: 6px; }
+#view-guide .intro-grid, #view-guide .feature-grid, #view-guide .role-grid, #view-guide .mode-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin: 20px 0 70px;
+  background: var(--line); border: 1px solid var(--line);
+}
+#view-guide .intro-card, #view-guide .feature-grid > div, #view-guide .role-grid > div, #view-guide .mode-grid > div {
+  background: var(--bg);
+  padding: 24px; box-shadow: none;
+  transition: background .15s ease;
+}
+#view-guide .intro-card:hover, #view-guide .feature-grid > div:hover, #view-guide .role-grid > div:hover, #view-guide .mode-grid > div:hover { background: var(--soft); }
+#view-guide .intro-card span, #view-guide .role-grid span { font-size: 1.5rem; }
+#view-guide .intro-card h3, #view-guide .role-grid h3 { margin: 10px 0 6px; }
+#view-guide .intro-card p, #view-guide .role-grid p, #view-guide .feature-grid p, #view-guide .mode-grid p { color: var(--muted); margin: 0; font-size: .92rem; }
+#view-guide .section {
+  margin: 0 0 60px; padding: 40px; background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--radius); box-shadow: none;
+}
+#view-guide .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+#view-guide .callout, #view-guide .example, #view-guide .warning, #view-guide .takeaway, #view-guide .prompt-box, #view-guide .formula, #view-guide .compare > div, #view-guide .quick-table > div {
+  border-radius: 6px; border: 1px solid var(--line); padding: 20px; background: var(--soft);
+}
+#view-guide .callout { align-self: start; }
+#view-guide .callout p { margin: 8px 0; color: var(--ink); font-size: .92rem; }
+#view-guide .callout strong { color: var(--accent); }
+#view-guide .muted { color: var(--muted); }
+#view-guide .example { margin-top: 25px; }
+#view-guide .example span { text-transform: uppercase; font-family: "IBM Plex Mono", monospace; font-size: .7rem; letter-spacing: .1em; font-weight: 500; color: var(--accent); }
+#view-guide .example p { margin-bottom: 0; color: var(--ink); font-size: .92rem; }
+#view-guide .warning { margin-top: 18px; background: rgba(242,166,90,0.08); border-color: rgba(242,166,90,0.3); }
+#view-guide .warning b { color: var(--accent-dark); }
+#view-guide .takeaway { margin-top: 22px; background: transparent; border-style: dashed; color: var(--ink); font-size: .92rem; }
+#view-guide .takeaway b { color: var(--accent); }
+#view-guide .steps { display: grid; gap: 10px; margin: 25px 0; }
+#view-guide .steps > div { display: flex; align-items: center; gap: 15px; }
+#view-guide .steps b { display: grid; place-items: center; min-width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--bg); font-family: "IBM Plex Mono", monospace; }
+#view-guide .steps span { color: var(--ink); font-size: .94rem; }
+#view-guide .steps.large > div { padding: 14px; background: var(--soft); border-radius: 6px; border: 1px solid var(--line); }
+#view-guide .formula { display: flex; justify-content: center; gap: 12px; align-items: center; font-family: "IBM Plex Mono", monospace; font-size: 1.05rem; font-weight: 500; margin: 25px 0; flex-wrap: wrap; color: var(--ink); }
+#view-guide .formula span { background: var(--soft); border: 1px solid var(--line); padding: 9px 14px; border-radius: 999px; }
+#view-guide pre { white-space: pre-wrap; margin: 12px 0 0; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .82rem; line-height: 1.55; color: var(--ink); }
+#view-guide .prompt-title { font-weight: 600; color: var(--accent-dark); font-family: "IBM Plex Mono", monospace; font-size: .84rem; }
+#view-guide .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 22px 0; }
+#view-guide .compare b { color: var(--ink); }
+#view-guide .compare p { margin-bottom: 0; color: var(--muted); font-size: .92rem; }
+#view-guide .flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; margin: 25px 0; font-size: .92rem; }
+#view-guide .flow span { background: var(--soft); border: 1px solid var(--line); padding: 8px 12px; border-radius: 999px; font-weight: 500; color: var(--ink); }
+#view-guide .flow i { color: var(--muted); }
+#view-guide .role-grid { grid-template-columns: repeat(4,1fr); margin-bottom: 20px; }
+#view-guide .feature-grid { grid-template-columns: repeat(4,1fr); margin-bottom: 20px; }
+#view-guide .mode-grid { grid-template-columns: repeat(3,1fr); margin-bottom: 20px; }
+#view-guide .prompt-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#view-guide .quick-table { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+#view-guide .quick-table > div { display: grid; grid-template-columns: 180px 1fr; gap: 15px; background: var(--bg); border-radius: 0; }
+#view-guide .quick-table b { color: var(--ink); }
+#view-guide .quick-table span { color: var(--muted); font-size: .92rem; }
+#view-guide .final-card { text-align: center; margin: 30px auto 0; max-width: 650px; padding: 30px; border-radius: 8px; background: var(--soft); border: 1px solid var(--line); color: var(--ink); }
+#view-guide .final-card .big { font-size: 2rem; }
+#view-guide .final-card h3 { margin: 8px 0; color: var(--accent); }
+#view-guide .final-card p { color: var(--muted); }
+#view-guide .final-card b { color: var(--ink); }
+#view-guide footer { border-top: 1px solid var(--line); padding: 35px 20px 55px; text-align: center; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: .8rem; }
+#view-guide footer p { margin: 5px; }
+#view-guide footer b { color: var(--ink); }
+@media (max-width: 850px) {
+#view-guide nav { grid-template-columns: 1fr; right: 20px; left: 20px; max-width: none; }
+#view-guide .intro-grid, #view-guide .feature-grid, #view-guide .role-grid, #view-guide .mode-grid { grid-template-columns: 1fr; }
+#view-guide .content-grid, #view-guide .compare, #view-guide .prompt-list { grid-template-columns: 1fr; }
+#view-guide .section { padding: 28px 20px; }
+#view-guide .hero { padding-top: 70px; }
+#view-guide .quick-table > div { grid-template-columns: 1fr; gap: 3px; }
+
+}
+
+</style>
+<style>
+#view-certifications {
+    --bg:#0E1620;
+    --bg-alt:#121C28;
+    --panel:#16212E;
+    --text:#E7E6DD;
+    --text-dim:#93A0AA;
+    --green:#4FD1A5;
+    --amber:#F2A65A;
+    --line:rgba(231,230,221,0.12);
+    --font-sans:'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono:'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+  }
+#view-certifications * {box-sizing:border-box; margin:0; padding:0;}
+#view-certifications body {background:var(--bg); color:var(--text); font-family:var(--font-sans); line-height:1.6; -webkit-font-smoothing:antialiased;}
+#view-certifications a {color:inherit; text-decoration:none;}
+#view-certifications .wrap {max-width:840px; margin:0 auto; padding:0 28px;}
+#view-certifications header {position:sticky; top:0; z-index:50; background:rgba(14,22,32,0.88); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+#view-certifications nav.wrap {display:flex; align-items:center; justify-content:space-between; height:64px; font-family:var(--font-mono); font-size:0.86rem;}
+#view-certifications .brand {font-family:var(--font-sans); font-weight:600; font-size:1rem;}
+#view-certifications .brand span {color:var(--green);}
+#view-certifications .back-link {color:var(--text-dim); transition:color .15s ease;}
+#view-certifications .back-link:hover {color:var(--green);}
+#view-certifications main {padding:64px 0 90px;}
+#view-certifications .eyebrow {font-family:var(--font-mono); font-size:0.82rem; color:var(--green); margin-bottom:14px;}
+#view-certifications h1 {font-size:clamp(1.9rem,4vw,2.6rem); font-weight:600; line-height:1.15; margin-bottom:16px;}
+#view-certifications .lede {color:var(--text-dim); font-size:1.02rem; max-width:600px; margin-bottom:48px;}
+#view-certifications .cert-list {display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden;}
+#view-certifications .cert {background:var(--bg); padding:28px 26px; display:flex; justify-content:space-between; align-items:flex-start; gap:24px; transition:background .15s ease;}
+#view-certifications a.cert {cursor:pointer;}
+#view-certifications a.cert:hover {background:var(--bg-alt);}
+#view-certifications .cert-main h3 {font-size:1.08rem; font-weight:600; margin-bottom:8px;}
+#view-certifications .cert-main p {font-size:0.92rem; color:var(--text-dim); max-width:460px;}
+#view-certifications .cert-date {font-family:var(--font-mono); font-size:0.76rem; color:var(--text-dim); white-space:nowrap; padding-top:4px;}
+#view-certifications .cert-link {font-family:var(--font-mono); font-size:0.76rem; color:var(--green); white-space:nowrap; padding-top:4px;}
+#view-certifications a.cert-link {cursor:pointer; transition:color .15s ease;}
+#view-certifications a.cert-link:hover {color:var(--text);}
+#view-certifications .cert-multi {align-items:center;}
+#view-certifications .cert-link-group {display:flex; flex-direction:column; gap:10px; align-items:flex-end;}
+#view-certifications footer {border-top:1px solid var(--line); padding:36px 0; text-align:center;}
+#view-certifications footer p {font-family:var(--font-mono); font-size:0.8rem; color:var(--text-dim);}
+
+</style>
+<style>
+#view-clauddev * {box-sizing:border-box}
+#view-clauddev html {scroll-behavior:smooth}
+#view-clauddev body {margin:0;font-family:"IBM Plex Sans",-apple-system,sans-serif;color:#E7E6DD;background:#0E1620;line-height:1.55}
+#view-clauddev a {color:inherit;text-decoration:none}
+#view-clauddev .wrap {max-width:1120px;margin:auto;padding:0 24px}
+#view-clauddev .topbar {position:sticky;top:0;z-index:20;background:rgba(14,22,32,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(231,230,221,0.12);padding:14px max(20px, calc((100vw - 1120px)/2));display:flex;align-items:center;gap:18px}
+#view-clauddev .topbar>a {font-weight:600;text-decoration:none;white-space:nowrap;font-family:"IBM Plex Sans",sans-serif;font-size:1.02rem;color:#E7E6DD;display:flex;align-items:center;gap:10px}
+#view-clauddev .topbar small {font-size:10px;background:#121C28;color:#F2A65A;border-radius:99px;padding:3px 8px;border:1px solid rgba(242,166,90,0.35);font-family:"IBM Plex Mono",monospace}
+#view-clauddev .topbar .back-link {font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.78rem;color:#93A0AA;white-space:nowrap;transition:color .15s ease;margin-left:auto}
+#view-clauddev .topbar .back-link:hover {color:#4FD1A5}
+#view-clauddev .contents-btn {display:flex;align-items:center;gap:6px;border:1px solid rgba(231,230,221,0.12);background:#121C28;color:#93A0AA;font-family:"IBM Plex Sans",sans-serif;font-weight:500;font-size:.78rem;padding:7px 12px;border-radius:6px;cursor:pointer;transition:border-color .15s ease,color .15s ease}
+#view-clauddev .contents-btn:hover {border-color:#4FD1A5;color:#4FD1A5}
+#view-clauddev nav {display:none;position:absolute;top:100%;right:20px;margin-top:8px;background:#16212E;border:1px solid rgba(231,230,221,0.12);border-radius:8px;padding:10px;box-shadow:0 20px 50px -15px rgba(0,0,0,0.6);grid-template-columns:repeat(2,minmax(150px,1fr));gap:2px;max-width:min(500px,calc(100vw - 40px));font-family:"IBM Plex Mono",monospace}
+#view-clauddev nav.open {display:grid}
+#view-clauddev nav a {font-size:.82rem;text-decoration:none;color:#93A0AA;white-space:nowrap;padding:9px 12px;border-radius:4px;transition:color .15s ease,background .15s ease}
+#view-clauddev nav a:hover {background:#121C28;color:#4FD1A5}
+#view-clauddev .topbar {position:relative}
+#view-clauddev .hero {padding:90px 15px 60px;background:linear-gradient(#0E1620,#0E1620);text-align:center;border-bottom:none}
+#view-clauddev .eyebrow {font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:#4FD1A5;margin-bottom:18px}
+#view-clauddev .eyebrow::before {content:"$ ";color:#93A0AA}
+#view-clauddev .hero h1 {font-size:clamp(2.2rem,5vw,3.4rem);font-weight:600;line-height:1.12;letter-spacing:-.01em;margin:0 0 20px}
+#view-clauddev .hero h1 em {font-style:normal;color:#F2A65A}
+#view-clauddev .hero-subtitle {max-width:650px;margin:0 auto;color:#93A0AA;font-size:1.08rem}
+#view-clauddev .hero-actions {display:flex;justify-content:center;gap:14px;margin:28px 0 16px;flex-wrap:wrap}
+#view-clauddev .button {padding:11px 18px;border-radius:6px;font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:.86rem;border:1px solid #4FD1A5;color:#4FD1A5;text-decoration:none;transition:background .15s ease,color .15s ease}
+#view-clauddev .button.primary {background:transparent;color:#4FD1A5;border-color:#4FD1A5}
+#view-clauddev .button.primary:hover {background:#4FD1A5;color:#0E1620}
+#view-clauddev .button.secondary {background:transparent;color:#F2A65A;border-color:#F2A65A}
+#view-clauddev .button.secondary:hover {background:#F2A65A;color:#0E1620}
+#view-clauddev .hero-note {color:#93A0AA;font-family:"IBM Plex Mono",monospace;font-size:.85rem;margin-top:6px}
+#view-clauddev .intro-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(231,230,221,0.12);border:1px solid rgba(231,230,221,0.12);max-width:1120px;margin:40px auto 0;padding:0}
+#view-clauddev .intro-card {background:#0E1620;padding:24px;transition:background .15s ease}
+#view-clauddev .intro-card:hover {background:#121C28}
+#view-clauddev .intro-card span {font-size:1.5rem}
+#view-clauddev .intro-card h3 {margin:10px 0 6px;color:#E7E6DD;font-size:1.02rem}
+#view-clauddev .intro-card p {color:#93A0AA;margin:0;font-size:.92rem}
+#view-clauddev .wrap.section-panel {padding:40px;background:#16212E;border:1px solid rgba(231,230,221,0.12);border-radius:8px}
+#view-clauddev .sectionhead label, #view-clauddev .labs label, #view-clauddev .study label {font-size:.76rem;letter-spacing:.1em;font-weight:500;color:#4FD1A5;font-family:"IBM Plex Mono",monospace}
+#view-clauddev .sectionhead {display:block;margin-bottom:26px}
+#view-clauddev .sectionhead h2 {font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.1;letter-spacing:-.01em;margin:5px 0 8px;color:#E7E6DD;font-weight:600}
+#view-clauddev .sectionhead p {margin:0;color:#93A0AA;max-width:760px;font-size:.96rem}
+#view-clauddev section {padding:70px 0;scroll-margin-top:84px}
+#view-clauddev section + section {border-top: none}
+#view-clauddev .alt {background:transparent}
+#view-clauddev .grid {display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+#view-clauddev .grid article {background:#16212E;border:1px solid rgba(231,230,221,0.12);border-radius:8px;padding:20px;transition:background .15s ease}
+#view-clauddev .grid article:hover {background:#1A2634}
+#view-clauddev .grid h3 {margin:0 0 8px;font-size:1.02rem;color:#E7E6DD;font-weight:600}
+#view-clauddev .grid p {color:#93A0AA;margin:0;font-size:.92rem}
+#view-clauddev .grid aside {margin-top:12px;background:rgba(79,209,165,0.08);border-left:3px solid #4FD1A5;padding:9px 12px;border-radius:0 6px 6px 0;font-size:.82rem;color:#E7E6DD}
+#view-clauddev .take {margin-top:20px;padding:16px 18px;background:#121C28;border:1px solid rgba(231,230,221,0.12);border-radius:8px;color:#93A0AA;font-size:.92rem}
+#view-clauddev .take b {color:#F2A65A}
+#view-clauddev .flow {display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px 0}
+#view-clauddev .flow b {background:#121C28;border:1px solid rgba(231,230,221,0.12);color:#E7E6DD;padding:7px 12px;border-radius:999px;font-size:.78rem;font-weight:500}
+#view-clauddev .grid pre {background:#0E1620;color:#E7E6DD;border:1px solid rgba(231,230,221,0.12);padding:14px;border-radius:6px;overflow:auto;font-size:.78rem;line-height:1.5;margin:10px 0 0;font-family:"IBM Plex Mono",monospace}
+#view-clauddev .arch, #view-clauddev .mcp, #view-clauddev .risk, #view-clauddev .eval {display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+#view-clauddev .arch b, #view-clauddev .mcp b, #view-clauddev .risk b, #view-clauddev .eval b {background:#121C28;border:1px solid rgba(231,230,221,0.12);border-radius:6px;padding:9px;text-align:center;font-size:.8rem;color:#E7E6DD;display:block;font-weight:500}
+#view-clauddev .mcp small, #view-clauddev .risk small {display:block;color:#93A0AA;font-weight:400;margin-top:3px;font-size:.7rem}
+#view-clauddev .production {background:#121C28;border:1px solid rgba(231,230,221,0.12);color:#E7E6DD;border-radius:8px;padding:16px;margin-top:20px;font-size:.86rem}
+#view-clauddev .production b {color:#4FD1A5}
+#view-clauddev .warning {background:rgba(242,166,90,0.08);border:1px solid rgba(242,166,90,0.3);border-radius:6px;padding:10px 12px;font-size:.82rem;margin-top:10px;color:#E7E6DD}
+#view-clauddev .warning b {color:#F2A65A}
+#view-clauddev .labs {display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+#view-clauddev .labs article {background:#16212E;border:1px solid rgba(231,230,221,0.12);border-radius:8px;padding:16px}
+#view-clauddev .labs h3 {margin:6px 0;color:#E7E6DD;font-size:.98rem}
+#view-clauddev .labs p {font-size:.82rem;color:#93A0AA;margin:0}
+#view-clauddev .labs code {font-size:.76rem;background:#0E1620;padding:2px 5px;border-radius:3px;color:#F2A65A;font-family:"IBM Plex Mono",monospace}
+#view-clauddev .grid code {font-size:.78rem;background:#0E1620;padding:2px 5px;border-radius:3px;color:#F2A65A;font-family:"IBM Plex Mono",monospace}
+#view-clauddev .questions {display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+#view-clauddev .questions div {background:#16212E;border:1px solid rgba(231,230,221,0.12);border-radius:8px;padding:12px;display:flex;gap:12px;align-items:center;font-size:.9rem;color:#E7E6DD}
+#view-clauddev .questions b {background:#121C28;border:1px solid rgba(242,166,90,0.35);color:#F2A65A;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.72rem;flex:none;font-family:"IBM Plex Mono",monospace}
+#view-clauddev .study {margin-top:24px;background:#16212E;border:1px solid rgba(231,230,221,0.12);color:#E7E6DD;border-radius:8px;padding:24px}
+#view-clauddev .study h2 {margin:6px 0;color:#E7E6DD}
+#view-clauddev .study p {color:#93A0AA;margin-bottom:0}
+#view-clauddev .sources {margin-top:24px}
+#view-clauddev .sources h3 {color:#E7E6DD}
+#view-clauddev .sources a {color:#4FD1A5}
+#view-clauddev .sources a:hover {color:#F2A65A}
+#view-clauddev .disclaimer {margin-top:22px;background:#121C28;border:1px solid rgba(231,230,221,0.12);border-radius:8px;padding:16px}
+#view-clauddev .disclaimer b {color:#F2A65A}
+#view-clauddev .disclaimer p {color:#93A0AA;margin-bottom:0;font-size:.82rem}
+#view-clauddev footer {background:#0A1119;color:#93A0AA;padding:35px 0;font-size:.8rem;border-top:1px solid rgba(231,230,221,0.12);font-family:"IBM Plex Mono",monospace;text-align:center}
+#view-clauddev footer b {color:#E7E6DD}
+@media(max-width:1000px) {
+#view-clauddev .labs {grid-template-columns:repeat(2,1fr)}
+
+}
+@media(max-width:680px) {
+#view-clauddev .wrap {padding:0 18px}
+#view-clauddev .hero {padding-top:58px}
+#view-clauddev .lead {font-size:1rem}
+#view-clauddev .grid, #view-clauddev .questions {grid-template-columns:1fr}
+#view-clauddev .intro-grid {grid-template-columns:1fr}
+#view-clauddev .labs {grid-template-columns:1fr}
+#view-clauddev .arch, #view-clauddev .mcp, #view-clauddev .risk, #view-clauddev .eval {grid-template-columns:1fr 1fr}
+#view-clauddev .journey {display:block}
+#view-clauddev .journey div {margin-bottom:8px}
+#view-clauddev .journey i {display:none}
+#view-clauddev section {padding:56px 0}
+#view-clauddev nav {grid-template-columns:1fr;right:16px;left:16px;max-width:none}
+
+}
+
+</style>
+<style>
+#view-articles {
+    --bg:#0E1620; --bg-alt:#121C28; --panel:#16212E;
+    --text:#E7E6DD; --text-dim:#93A0AA;
+    --green:#4FD1A5; --amber:#F2A65A;
+    --line:rgba(231,230,221,0.12);
+    --font-sans:'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono:'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+  }
+#view-articles * {box-sizing:border-box; margin:0; padding:0;}
+#view-articles body {background:var(--bg); color:var(--text); font-family:var(--font-sans); line-height:1.6; -webkit-font-smoothing:antialiased;}
+#view-articles a {color:inherit; text-decoration:none;}
+#view-articles .wrap {max-width:840px; margin:0 auto; padding:0 28px;}
+#view-articles header {position:sticky; top:0; z-index:50; background:rgba(14,22,32,0.88); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+#view-articles nav.wrap {display:flex; align-items:center; justify-content:space-between; height:64px; font-family:var(--font-mono); font-size:0.86rem;}
+#view-articles .brand {font-family:var(--font-sans); font-weight:600; font-size:1rem;}
+#view-articles .brand span {color:var(--green);}
+#view-articles .back-link {color:var(--text-dim); transition:color .15s ease;}
+#view-articles .back-link:hover {color:var(--green);}
+#view-articles main {padding:64px 0 90px;}
+#view-articles .eyebrow {font-family:var(--font-mono); font-size:0.82rem; color:var(--green); margin-bottom:14px;}
+#view-articles h1 {font-size:clamp(1.9rem,4vw,2.6rem); font-weight:600; line-height:1.15; margin-bottom:16px;}
+#view-articles .lede {color:var(--text-dim); font-size:1.02rem; max-width:600px; margin-bottom:48px;}
+#view-articles .article-list {display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden;}
+#view-articles .article {background:var(--bg); padding:28px 26px; display:flex; justify-content:space-between; align-items:flex-start; gap:24px; transition:background .15s ease;}
+#view-articles a.article {cursor:pointer;}
+#view-articles a.article:hover {background:var(--bg-alt);}
+#view-articles .article-main h3 {font-size:1.08rem; font-weight:600; margin-bottom:8px;}
+#view-articles .article-main p {font-size:0.92rem; color:var(--text-dim); max-width:460px;}
+#view-articles .article-link {font-family:var(--font-mono); font-size:0.76rem; color:var(--green); white-space:nowrap; padding-top:4px;}
+#view-articles footer {border-top:1px solid var(--line); padding:36px 0; text-align:center;}
+#view-articles footer p {font-family:var(--font-mono); font-size:0.8rem; color:var(--text-dim);}
+
+</style>
+<style>
+  #view-certifications, #view-guide, #view-clauddev, #view-articles { display:none; }
+</style>
+</head>
+<body>
+
+<div id="view-main">
+
+
+<header>
+  <nav class="wrap">
+    <a href="#home" class="brand">Deepak <span>Kumar</span></a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#learning">Learning</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#life">Life</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="https://www.linkedin.com/in/deepakkumarelangovan/" class="icon-link" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05C19.5 8 21 10.2 21 14.2V23h-4v-7.8c0-1.86-.03-4.25-2.6-4.25-2.6 0-3 2.03-3 4.13V23H7.5V8z"/></svg>
+      </a>
+      <a href="https://github.com/DeepakMF" class="icon-link" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.93c.57.1.78-.25.78-.55v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.6.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.09 0 4.42-2.7 5.4-5.26 5.68.42.36.78 1.07.78 2.16v3.2c0 .31.21.66.79.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+      </a>
+      <a href="#contact" class="btn">Let's connect</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div class="hero-left">
+        <h1>Keeping enterprise systems running. Now figuring out what comes <em>next</em>.</h1>
+        <p class="lede">I'm a mainframe engineer working in COBOL, JCL and DB2 - the systems that quietly run banks, insurers and logistics behind the scenes. Lately I've been modernizing that world and learning where AI actually fits into it.</p>
+        <div class="hero-ctas">
+          <a href="#journey" class="btn">See my journey</a>
+          <a href="#contact" class="btn btn-amber">Get in touch</a>
+        </div>
+        <div class="status-card">
+          <div class="status-row">
+            <span class="status-dot"></span>
+            <span class="status-label">currently</span>
+            <span class="status-value">Designing and coding for enterprise mainframe systems</span>
+          </div>
+          <div class="status-row">
+            <span class="status-dot"></span>
+            <span class="status-label">exploring</span>
+            <span class="status-value">Where AI genuinely helps with legacy code, and where it doesn't</span>
+          </div>
+          <div class="status-row">
+            <span class="status-dot"></span>
+            <span class="status-label">approach</span>
+            <span class="status-value">Curious first - not in a rush to throw out what still works</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-photo">
+          <img src="photo.jpeg" alt="Deepak Kumar">
+        </div>
+        <div class="terminal" aria-hidden="true">
+          <div class="terminal-bar"><span></span><span></span><span></span></div>
+          <div class="terminal-body">
+            <div class="l1">IDENTIFICATION DIVISION.</div>
+            <div class="l1">PROGRAM-ID. CAREER-PATH.</div>
+            <div>&nbsp;</div>
+            <div class="l2">01 STAGE     PIC X(20) VALUE 'MAINFRAME'.</div>
+            <div class="l2">01 NEXT-STAGE PIC X(20) VALUE 'MODERNIZE'.</div>
+            <div class="l3">01 GOAL      PIC X(20) VALUE 'KEEP LEARNING'.<span class="cursor"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="wrap strip-grid">
+      <div class="strip-item"><div class="label">Mainframe</div><div class="sub">COBOL&nbsp;· JCL&nbsp;· DB2</div></div>
+      <div class="strip-item"><div class="label">Modernization</div><div class="sub">IBM BOB · Zowe · VS Code<br>· GitHub · PostgreSQL</div></div>
+      <div class="strip-item"><div class="label">AI</div><div class="sub">Claude · ChatGPT · Copilot<br>· Prompt Engineering</div></div>
+      <div class="strip-item"><div class="label">Continuous learning</div><div class="sub">Always curious</div></div>
+      <div class="strip-item"><div class="label">Real-world impact</div><div class="sub">People&nbsp;· systems&nbsp;· progress</div></div>
+    </div>
+  </div>
+
+  <section id="journey">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>My journey</h2>
+          <p>From legacy systems to modern tools, one deliberate step at a time.</p>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="t-line-fill" id="tline"></div>
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <span class="t-tag">STAGE 01</span>
+          <h3>Mainframe</h3>
+          <p>Built a deep, practical understanding of the legacy systems that still keep the world running - COBOL, JCL, DB2, and the discipline that comes with them.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <span class="t-tag">STAGE 02</span>
+          <h3>Modernization</h3>
+          <p>Started extending and modernizing those systems with PostgreSQL and IBM BOB, learning where old and new architectures actually meet.</p>
+        </div>
+        <div class="t-item amber-stage">
+          <div class="t-dot"></div>
+          <span class="t-tag">STAGE 03</span>
+          <h3>Artificial intelligence</h3>
+          <p>Exploring Claude, ChatGPT, Copilot and prompt engineering to understand, document and work with legacy code faster - and where AI genuinely helps versus where it doesn't.</p>
+        </div>
+        <div class="t-item amber-stage">
+          <div class="t-dot"></div>
+          <span class="t-tag">STAGE 04</span>
+          <h3>A brighter tomorrow</h3>
+          <p>Still going: learning something new every week, applying it to real systems, and building a career on staying curious rather than standing still.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Featured projects</h2>
+          <p>A few things I've built and explored.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <a class="card" href="https://www.linkedin.com/posts/deepakkumarelangovan_ibm-ibmbob-ai-activity-7469416622701748224-9I13?utm_source=share&utm_medium=member_desktop&rcm=ACoAADaol-YBLSwjBmKUGCe04RYrOTpuANnwVuw" target="_blank" rel="noopener noreferrer">
+          <h3>IBM BOB projects</h3>
+          <p>Exploring IBM BOB for real modernization use cases on existing mainframe products.</p>
+          <span class="tag">Modernization &rarr; LinkedIn</span>
+        </a>
+        <a class="card" href="https://www.linkedin.com/posts/deepakkumarelangovan_postgresql-cobol-mainframe-activity-7491715038391586816-kRVw?utm_source=share&utm_medium=member_desktop&rcm=ACoAADaol-YBLSwjBmKUGCe04RYrOTpuANnwVuw" target="_blank" rel="noopener noreferrer">
+          <h3>PostgreSQL projects</h3>
+          <p>Hands-on work learning modern relational data tooling alongside a DB2 background.</p>
+          <span class="tag">Database &rarr; LinkedIn</span>
+        </a>
+        <a class="card" href="https://www.linkedin.com/in/deepakkumarelangovan/recent-activity/all/" target="_blank" rel="noopener noreferrer">
+          <h3>COBOL with AI</h3>
+          <p>Using AI tools to read, analyze and document legacy code that has outlived its original authors.</p>
+          <span class="tag">AI + mainframe &rarr; LinkedIn</span>
+        </a>
+        <a class="card" href="https://github.com/DeepakMF" target="_blank" rel="noopener noreferrer">
+          <h3>More projects</h3>
+          <p>Smaller personal experiments and things still in progress.</p>
+          <span class="tag">Learning &rarr; GitHub</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Learning &amp; certifications</h2>
+          <p>Always learning, always curious.</p>
+        </div>
+      </div>
+      <div class="grid cols-3">
+        <a class="card" href="#certifications">
+          <h3>Claude certifications</h3>
+          <p>Claude 101 and the Claude Certified Developer (Foundations) course - my track record with Claude so far.</p>
+          <span class="tag">Certifications &rarr; View all</span>
+        </a>
+        <div class="card">
+          <h3>GitHub Copilot</h3>
+          <p>Learning to use Copilot for COBOL development in day-to-day work.</p>
+          <span class="tag">Developer tools</span>
+        </div>
+        <div class="card">
+          <h3>Other learning</h3>
+          <p>Courses, workshops and ongoing growth outside of a single track.</p>
+          <span class="tag">Growth</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="writing">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Writing &amp; sharing</h2>
+          <p>Thoughts, lessons and experiments worth writing down.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <a class="card" href="https://www.linkedin.com/in/deepakkumarelangovan/recent-activity/all/" target="_blank" rel="noopener noreferrer">
+          <h3>AI for legacy systems</h3>
+          <p>A LinkedIn article series on where mainframes and AI intersect.</p>
+          <span class="tag">LinkedIn series &rarr;</span>
+        </a>
+        <a class="card" href="#articles">
+          <h3>Mainframe &amp; modernization</h3>
+          <p>Insights and lessons from real-world modernization work.</p>
+          <span class="tag">Technical articles &rarr;</span>
+        </a>
+        <div class="card">
+          <h3>Tools &amp; experiments</h3>
+          <p>Small experiments and practical learnings worth sharing.</p>
+          <span class="tag">Hands-on</span>
+        </div>
+        <div class="card">
+          <h3>Career &amp; growth</h3>
+          <p>Reflections on learning, career, and the journey ahead.</p>
+          <span class="tag">Personal</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="life">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Life beyond technology</h2>
+          <p>A few things that keep me balanced.</p>
+        </div>
+      </div>
+      <div class="life-grid">
+        <div class="life-card">
+          <h3>Family</h3>
+          <p>My wife and two wonderful daughters are my biggest motivation - the reason the long days are worth it.</p>
+        </div>
+        <a class="life-card" href="https://strava.app.link/qBH2eoY6m6b" target="_blank" rel="noopener noreferrer">
+          <h3>Fitness</h3>
+          <p>Running keeps me focused, energized and level-headed.</p>
+          <span class="tag" style="margin-top:14px;">Strava &rarr;</span>
+        </a>
+        <div class="life-card quote-card">
+          <p>"Progress isn't just about what we build - it's about the life we live along the way."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap footer-grid">
+    <div>
+      <div class="footer-brand">Deepak Kumar</div>
+      <div class="footer-tag">Mainframe · Modernization · AI</div>
+    </div>
+    <div class="footer-icons">
+      <a href="https://www.linkedin.com/in/deepakkumarelangovan/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05C19.5 8 21 10.2 21 14.2V23h-4v-7.8c0-1.86-.03-4.25-2.6-4.25-2.6 0-3 2.03-3 4.13V23H7.5V8z"/></svg></a>
+      <a href="https://github.com/DeepakMF" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.93c.57.1.78-.25.78-.55v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.6.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.09 0 4.42-2.7 5.4-5.26 5.68.42.36.78 1.07.78 2.16v3.2c0 .31.21.66.79.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a>
+      <a href="mailto:edkumar1992@gmail.com" aria-label="Email">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var line = document.getElementById('tline');
+  if (line && 'IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          line.classList.add('in-view');
+          obs.disconnect();
+        }
+      });
+    }, {threshold: 0.4});
+    obs.observe(line);
+  } else if (line) {
+    line.classList.add('in-view');
+  }
+</script>
+
+
+</div>
+
+<div id="view-certifications">
+
+
+<header>
+  <nav class="wrap">
+    <a href="#home" class="brand">Deepak <span>Kumar</span></a>
+    <a href="#learning" class="back-link">&larr; Back to site</a>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="eyebrow">Learning &amp; certifications</p>
+    <h1>Claude certifications</h1>
+    <p class="lede">A running record of what I've completed with Claude so far - starting with the basics and working toward formal certification.</p>
+
+    <div class="cert-list">
+      <div class="cert cert-multi">
+        <div class="cert-main">
+          <h3>Claude 101</h3>
+          <p>Getting started with Claude and exploring real-world use cases for it.</p>
+        </div>
+        <div class="cert-link-group">
+          <a class="cert-link" href="https://www.linkedin.com/posts/deepakkumarelangovan_claude-ai-generativeai-activity-7502341762863058944-rg7Z?utm_source=share&utm_medium=member_desktop&rcm=ACoAADaol-YBLSwjBmKUGCe04RYrOTpuANnwVuw" target="_blank" rel="noopener noreferrer">View on LinkedIn &rarr;</a>
+          <a class="cert-link" href="#claude101">Read the guide &rarr;</a>
+        </div>
+      </div>
+      <div class="cert cert-multi">
+        <div class="cert-main">
+          <h3>Claude Certified Developer (Foundations)</h3>
+          <p>Completed a five-module preparation course toward the foundations certification.</p>
+        </div>
+        <div class="cert-link-group">
+          <a class="cert-link" href="https://www.linkedin.com/posts/deepakkumarelangovan_claude-certified-developer-foundations-activity-7499873184964419584-Pjp6?utm_source=share&utm_medium=member_desktop&rcm=ACoAADaol-YBLSwjBmKUGCe04RYrOTpuANnwVuw" target="_blank" rel="noopener noreferrer">View on LinkedIn &rarr;</a>
+          <a class="cert-link" href="#clauddev">Read the guide &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Deepak Kumar &middot; Mainframe &middot; Modernization &middot; AI</p>
+</footer>
+
+
+</div>
+
+<div id="view-articles">
+
+
+<header>
+  <nav class="wrap">
+    <a href="#home" class="brand">Deepak <span>Kumar</span></a>
+    <a href="#writing" class="back-link">&larr; Back to site</a>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="eyebrow">Writing &amp; sharing</p>
+    <h1>Mainframe &amp; modernization articles</h1>
+    <p class="lede">Insights and lessons from real-world modernization work - written up as I go.</p>
+
+    <div class="article-list">
+      <a class="article" href="https://www.linkedin.com/pulse/getting-started-agentic-ai-mainframe-developers-elangovan-wwewe" target="_blank" rel="noopener noreferrer">
+        <div class="article-main">
+          <h3>Getting Started with Agentic AI for Mainframe Developers</h3>
+          <p>An introduction to agentic AI concepts, written for a mainframe developer audience.</p>
+        </div>
+        <div class="article-link">Read on LinkedIn &rarr;</div>
+      </a>
+      <a class="article" href="https://www.linkedin.com/pulse/postgresql-mainframe-developers-deepak-kumar-elangovan-uqple" target="_blank" rel="noopener noreferrer">
+        <div class="article-main">
+          <h3>PostgreSQL for Mainframe Developers</h3>
+          <p>A practical bridge from DB2 thinking to modern relational databases.</p>
+        </div>
+        <div class="article-link">Read on LinkedIn &rarr;</div>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Deepak Kumar &middot; Mainframe &middot; Modernization &middot; AI</p>
+</footer>
+
+
+</div>
+
+<div id="view-clauddev">
+
+<header class="topbar"><a href="#clauddev-home">Claude Developer Foundations</a><a class="back-link" href="#home">&larr; Deepak Kumar</a><button class="contents-btn" aria-label="Toggle contents">Contents &#9662;</button><nav>
+<a href="#clauddev-m1">01 Foundations</a><a href="#clauddev-m2">02 Prompting</a><a href="#clauddev-m3">03 Code &amp; MCP</a><a href="#clauddev-m4">04 Production</a><a href="#clauddev-m5">05 Accelerators</a><a href="#clauddev-labs">Labs</a><a href="#clauddev-ref">Reference</a></nav></header>
+<div class="clauddev-shell">
+<section id="clauddev-home" class="hero">
+  <div class="eyebrow">FOR DEVELOPERS</div>
+  <h1>Claude Certified Developer<br><em>- Foundations</em></h1>
+  <p class="hero-subtitle">A concise practical study companion for developers moving from using Claude to building reliable Claude-powered applications.</p>
+  <div class="hero-actions">
+    <a class="button primary" href="#clauddev-m1">Start the guide &rarr;</a>
+    <a class="button secondary" href="#clauddev-labs">Try the labs</a>
+  </div>
+  <div class="hero-note">Concise modules &middot; Mainframe-grounded examples &middot; Practical patterns</div>
+</section>
+
+<section class="intro-grid">
+  <div class="intro-card">
+    <span>🤖</span>
+    <h3>Claude 101</h3>
+    <p>Understand Claude.</p>
+  </div>
+  <div class="intro-card">
+    <span>💻</span>
+    <h3>Developer Foundations</h3>
+    <p>Build with Claude.</p>
+  </div>
+  <div class="intro-card">
+    <span>🚀</span>
+    <h3>Production AI</h3>
+    <p>Engineer for real users.</p>
+  </div>
+</section>
+
+<section id="clauddev-m1"><div class="wrap section-panel"><header class="sectionhead"><label>01 &middot; MSO FOUNDATIONS</label><h2>Model & Technical Foundations</h2><p>Know the mechanics that affect design, quality, cost and speed.</p></header>
+<div class="grid">
+<article><h3>01 · Tokens</h3><p>Claude reads and generates text as tokens. More tokens can mean more cost, context usage and latency.</p><aside><b>🖥️ Mainframe:</b> Don't load every COBOL member when only 3 are relevant.</aside></article>
+<article><h3>02 · Context Window</h3><p>A bounded working space for instructions, conversation, files and tool results.</p><aside><b>🖥️ Mainframe:</b> Give Claude the relevant program, copybook and SQL—not the whole application.</aside></article>
+<article><h3>03 · Sampling & Non-determinism</h3><p>LLM output can vary, so test important behavior—not just exact wording.</p><aside><b>🖥️ Mainframe:</b> COBOL regression tests expect stable behavior; AI evals need tolerance for valid variation.</aside></article>
+<article><h3>04 · Model Selection</h3><p>Choose for capability, speed, volume and cost. Bigger is not always better.</p><aside><b>🖥️ Mainframe:</b> Use stronger reasoning for complex dependency analysis; lighter models for simple classification.</aside></article>
+<article><h3>05 · Reasoning Mode</h3><p>Deeper reasoning can help multi-step tasks, but may increase cost and latency.</p><aside><b>🖥️ Mainframe:</b> “Explain this MOVE” is simpler than tracing COBOL → copybook → DB2 → JCL.</aside></article>
+<article><h3>06 · Zero / One / Multi-shot</h3><p>Zero = no examples. One = one example. Multi = several examples. Examples use context.</p><aside><b>🖥️ Mainframe:</b> Show 2 correct COBOL paragraph classifications before asking Claude to classify more.</aside></article>
+<article><h3>07 · SDK vs REST</h3><p>SDKs add language-specific convenience; REST exposes the HTTP API directly.</p><aside><b>🖥️ Mainframe:</b> Think of choosing the integration style that best fits a CICS/service workflow.</aside></article>
+<article><h3>08 · Sync / Streaming / Async</h3><p>Sync waits. Streaming returns progressively. Async suits longer or high-volume work.</p><aside><b>🖥️ Mainframe:</b> Interactive CICS-style work differs from a large nightly batch process.</aside></article>
+</div><div class="take">Remember: <b>model + context + prompting + access pattern</b> are core design choices.</div></div></section>
+
+<section id="clauddev-m2" class="alt"><div class="wrap section-panel"><header class="sectionhead"><label>02 &middot; PRODUCTION-GRADE PROMPTING, AGENTS & TOOL USE</label><h2>Prompting, Tools & Agents</h2><p>Build workflows that are clear, bounded and testable.</p></header>
+<div class="flow"><b>Instruction</b> + <b>Context</b> + <b>Examples</b> + <b>Constraints</b> → <b>Behavior</b></div>
+<div class="grid">
+<article><h3>01 · System Prompts</h3><p>Define role, behavior and boundaries.</p><pre>Review this COBOL program.
+Use supplied files as evidence.
+Separate facts from assumptions.
+Do not invent dependencies.
+
+Output: behavior, rules, unknowns.</pre></article>
+<article><h3>02 · XML & Structure</h3><p>Separate task, context, examples, constraints and output.</p><aside><b>🖥️ Mainframe:</b> Keep COBOL source, copybook and business requirement clearly separated.</aside></article>
+<article><h3>03 · Few-shot Examples</h3><p>Use representative examples to show the behavior you want.</p><aside><b>🖥️ Mainframe:</b> Give a correct example of a “business rule” paragraph.</aside></article>
+<article><h3>04 · Constraints & Output</h3><p>Define required fields, limits and what to do when evidence is missing.</p><aside><b>🖥️ Mainframe:</b> Require Program, Copybooks, DB2 Tables, Rules and Open Questions.</aside></article>
+<article><h3>05 · Diagnose Weak Prompts</h3><p>Check ambiguity, missing context, missing examples, unclear output and model fit.</p><aside><b>🖥️ Mainframe:</b> If SQL is absent, don't ask Claude to “discover” a DB2 table from a field name.</aside></article>
+<article><h3>06 · Tool Schemas</h3><p>Describe a tool's purpose, inputs, outputs and failure cases precisely.</p><aside><b>🖥️ Mainframe:</b> <code>find_program_dependency(program_name)</code> should return defined evidence—not guesses.</aside></article>
+<article><h3>07 · Tool-use Loop</h3><div class="flow"><b>Goal</b> → <b>Tool</b> → <b>Result</b> → <b>Next</b></div><p>The application validates calls and handles failures.</p></article>
+<article><h3>08 · Multi-turn & Thinking</h3><p>Each turn can add context and tool results. Manage cost, latency and failure paths.</p><aside><b>🖥️ Mainframe:</b> First find the program, then inspect copybooks, then trace dependencies.</aside></article>
+<article><h3>09 · Production Agents</h3><p>An agent can decide and use tools across multiple steps.</p><div class="arch"><b>Model</b><b>Tools</b><b>Memory</b><b>Human</b></div><aside><b>🖥️ Mainframe:</b> COBOL → copybooks → JCL → DB2 → impact report.</aside></article>
+<article><h3>10 · Memory & Human Review</h3><p>Choose what state persists. Put people at high-impact checkpoints.</p><aside><b>🖥️ Mainframe:</b> AI may prepare a DB2 change; approval comes before execution.</aside></article>
+</div><div class="take">Remember: <b>structured context + defined tools + explicit boundaries</b>.</div></div></section>
+
+<section id="clauddev-m3"><div class="wrap section-panel"><header class="sectionhead"><label>03 &middot; CLAUDE CODE, MCP & INTEGRATION</label><h2>Claude Code, MCP & Safe Integration</h2><p>Move from experimentation to controlled engineering workflows.</p></header>
+<div class="grid">
+<article><h3>01 · Explore → Plan → Code</h3><p>Understand the repository, plan the change, implement and review.</p><aside><b>🖥️ Mainframe:</b> inspect COBOL, copybooks, JCL and dependencies first.</aside></article>
+<article><h3>02 · Permission Models</h3><p>Permissions should match risk.</p><div class="risk"><b>Read<small>Low</small></b><b>Edit<small>Medium</small></b><b>Irreversible<small>High</small></b></div></article>
+<article><h3>03 · AI Code Review</h3><p>Review logic, assumptions, tests, security and operational impact.</p><aside><b>🖥️ Mainframe:</b> check PIC handling, DB2 errors and regression impact.</aside></article>
+<article><h3>04 · Durable Context</h3><p>CLAUDE.md, rules, hooks and subagents can carry project guidance.</p><aside><b>🖥️ Mainframe:</b> keep rules for COBOL, copybooks and JCL analysis.</aside></article>
+<article><h3>05 · Skills, Commands & Plugins</h3><p>Package successful workflows for repeatable use.</p><aside><b>🖥️ Mainframe:</b> turn your COBOL review process into a reusable workflow.</aside></article>
+<article><h3>06 · MCP</h3><p>MCP standardizes connections between Claude and external capabilities.</p><div class="mcp"><b>Tools<small>Actions</small></b><b>Resources<small>Information</small></b><b>Prompts<small>Templates</small></b></div></article>
+<article><h3>07 · Transport & Scope</h3><p>Communication method and configuration scope affect how an integration is used.</p><aside><b>🖥️ Mainframe:</b> distinguish personal developer access from enterprise shared access.</aside></article>
+<article><h3>08 · Enterprise Integration</h3><p>Control identity, credentials, authorization and data boundaries.</p><aside><b>🖥️ Mainframe:</b> Claude should respect the same access boundaries as the authorized user/system.</aside></article>
+</div><div class="take">Remember: <b>safe permissions + reusable workflows + controlled integrations</b>.</div></div></section>
+
+<section id="clauddev-m4" class="alt"><div class="wrap section-panel"><header class="sectionhead"><label>04 &middot; PRODUCTION ENGINEERING, EVALS & SECURITY</label><h2>Prove the system works</h2><p>Measure quality, control risk and plan for failure.</p></header>
+<div class="grid">
+<article><h3>01 · Evals</h3><p>Define “done” and test representative tasks and failures.</p><div class="eval"><b>Input</b><b>System</b><b>Expected</b><b>Result</b></div><aside><b>🖥️ Mainframe:</b> test nested PERFORMs, DB2 SQL, missing copybooks and file status.</aside></article>
+<article><h3>02 · Test Variation</h3><p>Evaluate important properties, not one exact sentence.</p><aside><b>🖥️ Mainframe:</b> two explanations can differ in wording and still describe the same flow.</aside></article>
+<article><h3>03 · Tracing</h3><p>Inspect instructions, model output, tool calls and tool results.</p><aside><b>🖥️ Mainframe:</b> trace which source search produced the wrong dependency.</aside></article>
+<article><h3>04 · Cost Budget</h3><p>Model, context, reasoning and workflow design affect cost.</p><aside><b>🖥️ Mainframe:</b> filter 20,000 programs first; use stronger reasoning only where needed.</aside></article>
+<article><h3>05 · Latency</h3><p>Multiple model turns and tools can add response time.</p><aside><b>🖥️ Mainframe:</b> one paragraph explanation can be interactive; a dependency scan can be async.</aside></article>
+<article><h3>06 · Reliability</h3><p>Plan for timeouts, invalid inputs, incomplete results and interruptions.</p><aside><b>🖥️ Mainframe:</b> if source search fails, report it—never invent a dependency.</aside></article>
+<article><h3>07 · Prompt Injection</h3><p>Retrieved content can contain instructions that try to manipulate the model.</p><div class="warning"><b>Rule:</b> data is not automatically authority.</div><aside><b>🖥️ Mainframe:</b> a malicious source comment is still source data.</aside></article>
+<article><h3>08 · Secrets & Least Privilege</h3><p>Protect credentials and give tools only the access they need.</p><aside><b>🖥️ Mainframe:</b> code analysis needs read access—not production DB write access.</aside></article>
+<article><h3>09 · Human Review</h3><p>Use people where errors are expensive or irreversible.</p><aside><b>🖥️ Mainframe:</b> developer/SME validates AI-generated change analysis before release.</aside></article>
+</div><div class="production"><b>Production:</b> Quality → Evals → Security → Cost → Latency → Reliability → Observability → Human review</div><div class="take">Remember: <b>production readiness is evidence</b>.</div></div></section>
+
+<section id="clauddev-m5"><div class="wrap section-panel"><header class="sectionhead"><label>05 &middot; ACCELERATORS & IP CONTRIBUTION</label><h2>Make the solution reusable</h2><p>Turn a working build into something others can understand and use.</p></header>
+<div class="grid">
+<article><h3>01 · Prototype → Accelerator</h3><p>Capture repeatable steps instead of keeping the solution in one person's prompt history.</p><aside><b>🖥️ Mainframe:</b> package a repeatable COBOL documentation workflow.</aside></article>
+<article><h3>02 · Configuration</h3><p>Separate environment-specific settings from reusable logic.</p><aside><b>🖥️ Mainframe:</b> keep repository and environment details outside the core workflow.</aside></article>
+<article><h3>03 · Documentation</h3><p>Document behavior, inputs, permissions, assumptions, evals and operations.</p><aside><b>🖥️ Mainframe:</b> document source members, copybook resolution and DB2 dependency rules.</aside></article>
+<article><h3>04 · Deployment</h3><p>Where it runs affects connectivity, security, data, latency, cost and operations.</p><aside><b>🖥️ Mainframe:</b> workstation, CI and enterprise-hosted deployments may need different access paths.</aside></article>
+<article><h3>05 · Shared Infrastructure</h3><p>Shared assets are easier to review, maintain and extend.</p><aside><b>🖥️ Mainframe:</b> five teams should reuse the workflow without your personal prompt history.</aside></article>
+</div><div class="take">Remember: <b>build once → document → evaluate → control → reuse</b>.</div></div></section>
+
+<section id="clauddev-labs" class="alt"><div class="wrap section-panel"><header class="sectionhead"><label>PRACTICAL LABS</label><h2>🧪 Small exercises. Real concepts.</h2><p>Short hands-on tasks instead of long theory.</p></header><div class="labs">
+<article><label>LAB 01</label><h3>Context Budget</h3><p>Keep the relevant COBOL program and copybook. Remove unrelated docs.</p></article>
+<article><label>LAB 02</label><h3>Prompt Comparison</h3><p>Compare zero-shot with two COBOL examples.</p></article>
+<article><label>LAB 03</label><h3>Tool Design</h3><p>Define <code>find_program_dependency</code>: input, output, errors.</p></article>
+<article><label>LAB 04</label><h3>Agent Guardrail</h3><p>Prepare a DB2 change—but require approval before execution.</p></article>
+<article><label>LAB 05</label><h3>Evaluation Suite</h3><p>Create 10 tests for a COBOL documentation assistant.</p></article>
+<article><label>LAB 06</label><h3>MCP Architecture</h3><p>Draw Claude → MCP → enterprise knowledge with security boundaries.</p></article>
+<article><label>LAB 07</label><h3>Prompt Injection</h3><p>Give a malicious document. Separate data from authority.</p></article>
+<article><label>LAB 08</label><h3>Production Review</h3><p>Review quality, security, cost, latency, reliability and observability.</p></article>
+</div></div></section>
+
+<section id="clauddev-ref"><div class="wrap section-panel"><header class="sectionhead"><label>QUICK REFERENCE</label><h2>🧭 10 questions before shipping</h2></header><div class="questions">
+<div><b>01</b>Right context?</div><div><b>02</b>Explicit, testable prompt?</div><div><b>03</b>Right model?</div><div><b>04</b>Precise tools?</div><div><b>05</b>Controlled agent permissions?</div><div><b>06</b>Quality evaluated?</div><div><b>07</b>Failure path defined?</div><div><b>08</b>Cost and latency controlled?</div><div><b>09</b>Secrets and untrusted data protected?</div><div><b>10</b>Human review where needed?</div></div>
+<div class="study"><label>STUDY LOOP</label><h2>Understand → Practice → Apply → Validate</h2><p>Learn the concept. Try it. Connect it to a real system. Validate assumptions and failure cases.</p></div>
+<div class="sources"><h3>Official sources</h3><ul><li><a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations">Developer Foundations Prep Course ↗</a></li><li><a href="https://anthropic-partners.skilljar.com/page/partner-certifications">Partner Certifications ↗</a></li><li><a href="https://anthropic-partners.skilljar.com/mso-foundations">MSO Foundations ↗</a></li><li><a href="https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/claude-code-mcp-integration">Claude Code, MCP & Integration ↗</a></li></ul></div>
+<div class="disclaimer"><b>Disclaimer</b><p>This is an independent learning resource. It is not an official Anthropic course, documentation, exam guide, exam dump, or certification material. Use Anthropic's current official materials for authoritative certification requirements.</p></div>
+</div></section>
+</div>
+<footer><div class="wrap"><b>Claude Certified Developer - Foundations</b><p>Learn it &rarr; Understand it &rarr; Build it &rarr; Validate it 🚀</p></div></footer>
+
+
+</div>
+
+<div id="view-guide">
+
+  <header class="topbar">
+    <a class="brand" href="#claude101-home">Claude 101</a>
+    <div class="nav-right-group">
+      <a class="back-link" href="#home">&larr; Deepak Kumar</a>
+      <button class="contents-btn" aria-label="Toggle contents">Contents &#9662;</button>
+    </div>
+    <nav id="nav">
+      <a href="#claude101-what-is-claude">What is Claude?</a>
+      <a href="#claude101-conversation">First Conversation</a>
+      <a href="#claude101-prompting">Prompting</a>
+      <a href="#claude101-desktop">Desktop</a>
+      <a href="#claude101-projects">Projects</a>
+      <a href="#claude101-artifacts">Artifacts</a>
+      <a href="#claude101-skills">Skills</a>
+      <a href="#claude101-tools">Tools</a>
+      <a href="#claude101-search">Enterprise Search</a>
+      <a href="#claude101-research">Deep Research</a>
+      <a href="#claude101-roles">By Role</a>
+      <a href="#claude101-ways">Other Ways</a>
+      <a href="#claude101-quick-reference">Quick Reference</a>
+    </nav>
+  </header>
+
+  <div class="claude101-shell">
+    <section id="claude101-home" class="hero">
+      <div class="eyebrow">A PRACTICAL INTRODUCTION</div>
+      <h1>Claude 101</h1>
+      <p class="hero-subtitle">Learn the concepts behind Claude and start using it effectively — one practical idea at a time.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#claude101-what-is-claude">Start Learning →</a>
+        <a class="button secondary" href="#claude101-quick-reference">Quick Reference</a>
+      </div>
+      <div class="hero-note">Designed for busy learners · Short explanations · Practical examples</div>
+    </section>
+
+    <section class="intro-grid">
+      <div class="intro-card">
+        <span>🧠</span>
+        <h3>Understand</h3>
+        <p>Build a clear mental model of Claude and its capabilities.</p>
+      </div>
+      <div class="intro-card">
+        <span>🛠️</span>
+        <h3>Practice</h3>
+        <p>Turn concepts into useful prompts and workflows.</p>
+      </div>
+      <div class="intro-card">
+        <span>🚀</span>
+        <h3>Apply</h3>
+        <p>Use Claude for real developer, analyst and technical-lead tasks.</p>
+      </div>
+    </section>
+
+    <section class="section" id="claude101-what-is-claude">
+      <div class="section-label">01 · FOUNDATION</div>
+      <h2>🧠 What is Claude?</h2>
+      <div class="content-grid">
+        <div>
+          <h3>What is it?</h3>
+          <p>Claude is an AI assistant from Anthropic. It uses large language models to understand instructions, work with context, reason through problems and generate useful outputs.</p>
+          <h3>Why does it matter?</h3>
+          <p>Instead of interacting only through fixed commands, you can describe a goal in natural language and collaborate with Claude through an iterative conversation.</p>
+        </div>
+        <div class="callout">
+          <strong>💡 Mental model</strong>
+          <p><b>Traditional software:</b> predefined rules → input → deterministic processing.</p>
+          <p><b>Claude:</b> instruction + context + model reasoning → generated response.</p>
+          <p class="muted">AI output is not automatically a fact. Important results should be validated.</p>
+        </div>
+      </div>
+      <div class="example">
+        <span>Example</span>
+        <p>Instead of asking only “What does this COBOL paragraph do?”, ask Claude to explain it step by step, identify possible business rules and list questions to confirm with an SME.</p>
+      </div>
+      <div class="takeaway">Key takeaway: <b>Claude is a reasoning assistant, not a replacement for human validation.</b></div>
+    </section>
+
+    <section class="section" id="claude101-conversation">
+      <div class="section-label">02 · COLLABORATION</div>
+      <h2>💬 Your First Conversation</h2>
+      <h3>What is it?</h3>
+      <p>Claude understands natural-language instructions. You can start with a request and then refine the result through follow-up questions.</p>
+      <h3>Why does it matter?</h3>
+      <p>You do not need to write the perfect prompt on the first attempt. Good interaction is often iterative: ask → inspect → clarify → improve.</p>
+      <div class="steps">
+        <div><b>1</b><span>Give Claude the task.</span></div>
+        <div><b>2</b><span>Review the response.</span></div>
+        <div><b>3</b><span>Point out what needs changing.</span></div>
+        <div><b>4</b><span>Ask for the improved version.</span></div>
+      </div>
+      <div class="takeaway">Key takeaway: <b>Think of Claude as a smart colleague you can iterate with.</b></div>
+    </section>
+
+    <section class="section" id="claude101-prompting">
+      <div class="section-label">03 · CORE SKILL</div>
+      <h2>✍️ Getting Better Results — Prompting</h2>
+      <p>A useful starting formula is:</p>
+      <div class="formula"><span>Task</span> + <span>Context</span> + <span>Desired Result</span></div>
+      <div class="content-grid">
+        <div>
+          <h3>Task</h3><p>What do you want Claude to do?</p>
+          <h3>Context</h3><p>What information does Claude need to do it well?</p>
+          <h3>Desired result</h3><p>What should the output look like? Include format, audience, depth or constraints.</p>
+        </div>
+        <div class="prompt-box">
+          <div class="prompt-title">📋 Copyable developer prompt</div>
+          <pre><code>I'm reviewing an existing COBOL program.
+
+Please:
+1. Explain this paragraph step by step
+2. Identify apparent business rules
+3. Flag hardcoded values and edge cases
+4. List questions I should confirm with an SME
+5. Clearly separate facts from assumptions
+
+Code:
+[PASTE CODE HERE]</code></pre>
+        </div>
+      </div>
+      <div class="warning"><b>⚠️ Validate inference.</b> If Claude infers a DB2 table or copybook relationship from a field name, treat that as a hypothesis unless the actual source supports it.</div>
+      <div class="takeaway">Key takeaway: <b>Specific context and a clear output format usually produce more useful results.</b></div>
+    </section>
+
+    <section class="section" id="claude101-desktop">
+      <div class="section-label">04 · WORKSPACE</div>
+      <h2>🖥️ Working with Claude on Your Desktop</h2>
+      <p>Claude Desktop provides a workspace for interacting with Claude and working with features such as conversations, Projects, Artifacts and coding workflows.</p>
+      <div class="feature-grid">
+        <div><b>💬 Chat</b><p>General conversations and problem solving.</p></div>
+        <div><b>📁 Projects</b><p>Organize work around a subject or goal.</p></div>
+        <div><b>🎨 Artifacts</b><p>Create and iterate on substantial outputs.</p></div>
+        <div><b>💻 Code</b><p>Support software-development workflows.</p></div>
+      </div>
+      <div class="takeaway">Key takeaway: <b>Desktop is a workspace for doing AI-assisted work, not just a chat window.</b></div>
+    </section>
+
+    <section class="section" id="claude101-projects">
+      <div class="section-label">05 · CONTEXT</div>
+      <h2>📁 Projects</h2>
+      <h3>What is it?</h3>
+      <p>A Project is a dedicated workspace for a subject or goal. It can keep related conversations, files and instructions together.</p>
+      <h3>Why does it matter?</h3>
+      <p>Repeatedly explaining the same background wastes time. A focused workspace gives Claude the context needed for ongoing work.</p>
+      <div class="example"><span>Example project</span><p><b>Customer Billing Analysis</b> — COBOL programs, copybooks, JCL, DB2 documentation, requirements and project instructions.</p></div>
+      <div class="takeaway">Key takeaway: <b>Chat is a conversation; a Project is a workspace built around a continuing goal.</b></div>
+    </section>
+
+    <section class="section" id="claude101-artifacts">
+      <div class="section-label">06 · CREATION</div>
+      <h2>🎨 Artifacts</h2>
+      <h3>What are they?</h3>
+      <p>Artifacts are substantial outputs Claude creates for you, such as documents, code, diagrams, visualizations or interactive content.</p>
+      <h3>Why do they matter?</h3>
+      <p>You can review the result, give feedback and iterate instead of treating the first response as the final product.</p>
+      <div class="example"><span>Example</span><p>“Create a design-ready flow showing COBOL → DB2 → CICS interactions. Then add JCL dependencies and identify areas requiring SME confirmation.”</p></div>
+      <div class="takeaway">Key takeaway: <b>Artifacts turn a conversation into something you can inspect, refine and use.</b></div>
+    </section>
+
+    <section class="section" id="claude101-skills">
+      <div class="section-label">07 · REUSE</div>
+      <h2>🧩 Skills</h2>
+      <h3>What are they?</h3>
+      <p>Skills are reusable instructions, capabilities or workflows for recurring types of work.</p>
+      <div class="compare">
+        <div><b>Prompt</b><p>An instruction for a particular task.</p></div>
+        <div><b>Skill</b><p>A reusable workflow or capability for repeated task types.</p></div>
+      </div>
+      <div class="example"><span>Example</span><p>A “COBOL Code Review” skill could consistently check business rules, error handling, DB2 interactions, copybooks, hardcoded values and potential risks.</p></div>
+      <div class="takeaway">Key takeaway: <b>If you repeatedly do the same kind of work, turn the workflow into something reusable.</b></div>
+    </section>
+
+    <section class="section" id="claude101-tools">
+      <div class="section-label">08 · INTEGRATION</div>
+      <h2>🔌 Connecting Your Tools</h2>
+      <p>Claude can work with connected tools and external systems, depending on the environment and permissions you provide.</p>
+      <div class="flow">
+        <span>User</span><i>→</i><span>Claude</span><i>→</i><span>Tool</span><i>→</i><span>External System</span><i>→</i><span>Result</span><i>→</i><span>Claude</span>
+      </div>
+      <h3>Where can this help?</h3>
+      <p>Examples include source repositories, files, project systems, collaboration platforms and other enterprise data sources.</p>
+      <div class="warning"><b>🔐 Security principle:</b> use least privilege. A connected tool should have only the access needed for the task.</div>
+      <div class="example"><span>MCP in one sentence</span><p>Model Context Protocol (MCP) provides a standardized way for AI applications to connect with tools and data sources.</p></div>
+      <div class="takeaway">Key takeaway: <b>Tool access expands what Claude can do, but permissions and security still matter.</b></div>
+    </section>
+
+    <section class="section" id="claude101-search">
+      <div class="section-label">09 · KNOWLEDGE</div>
+      <h2>🏢 Enterprise Search</h2>
+      <h3>What is it?</h3>
+      <p>Enterprise search helps Claude find and synthesize information from connected organizational knowledge sources.</p>
+      <h3>Why does it matter?</h3>
+      <p>Important knowledge is often distributed across documentation, policies, project pages and other internal sources.</p>
+      <div class="example"><span>Example</span><p>Ask Claude to find the relevant design guidance across connected enterprise documentation and summarize the applicable points.</p></div>
+      <div class="warning"><b>Remember:</b> enterprise search does not mean Claude automatically sees everything. Identity, permissions and connected-source access still apply.</div>
+      <div class="takeaway">Key takeaway: <b>Search makes organizational knowledge easier to retrieve and synthesize — within the access you provide.</b></div>
+    </section>
+
+    <section class="section" id="claude101-research">
+      <div class="section-label">10 · INVESTIGATION</div>
+      <h2>🔎 Research for Deep Dives</h2>
+      <p>Use research-style workflows when a question requires investigation, multiple sources, comparison and synthesis.</p>
+      <div class="compare">
+        <div><b>Simple question</b><p>Use a normal conversation when one clear answer is enough.</p></div>
+        <div><b>Deep investigation</b><p>Research when you need multiple sources, trade-offs, evidence and a synthesized conclusion.</p></div>
+      </div>
+      <div class="example"><span>Good research question</span><p>“Compare three approaches for exposing an existing transaction-processing application to modern consumers. Evaluate security, operational complexity, maintainability and migration risk.”</p></div>
+      <div class="warning"><b>Validate important claims:</b> especially technical, security, architecture, performance and cost conclusions.</div>
+      <div class="takeaway">Key takeaway: <b>Use research when the task is investigation, not just question answering.</b></div>
+    </section>
+
+    <section class="section" id="claude101-roles">
+      <div class="section-label">11 · APPLICATION</div>
+      <h2>👥 Claude in Action — By Role</h2>
+      <div class="role-grid">
+        <div><span>👨‍💻</span><h3>Developer</h3><p>Code analysis, debugging, tests, refactoring and documentation.</p></div>
+        <div><span>📋</span><h3>Business Analyst</h3><p>Requirements, ambiguity detection, business rules and summaries.</p></div>
+        <div><span>🏗️</span><h3>Technical Lead / Architect</h3><p>Design options, impact analysis, technical documentation and research.</p></div>
+        <div><span>📣</span><h3>PM / Communicator</h3><p>Status summaries, reports, presentations and clear stakeholder communication.</p></div>
+      </div>
+      <div class="takeaway">Key takeaway: <b>The same AI becomes more useful when you provide the right role, context, task and expected output.</b></div>
+    </section>
+
+    <section class="section" id="claude101-ways">
+      <div class="section-label">12 · CHOOSING THE MODE</div>
+      <h2>💻 Other Ways to Work with Claude</h2>
+      <div class="mode-grid">
+        <div><b>🖥️ Claude Desktop</b><p>Use Claude as an AI-assisted workspace.</p></div>
+        <div><b>⌨️ Claude Code</b><p>Use Claude for software-development workflows.</p></div>
+        <div><b>🔗 Claude API</b><p>Build applications that use Claude programmatically.</p></div>
+      </div>
+      <div class="compare">
+        <div><b>Using Claude</b><p>You directly collaborate with the assistant.</p></div>
+        <div><b>Building with Claude</b><p>You create software or workflows powered by Claude.</p></div>
+      </div>
+      <div class="takeaway">Key takeaway: <b>Choose the interface based on the job you need to accomplish.</b></div>
+    </section>
+
+    <section class="section" id="claude101-workflow">
+      <div class="section-label">13 · PUTTING IT TOGETHER</div>
+      <h2>⚡ A Practical Workflow</h2>
+      <p>These concepts become most useful when combined into one repeatable workflow.</p>
+      <div class="steps large">
+        <div><b>1</b><span><strong>Start with a Project</strong><br>Collect the relevant context and instructions.</span></div>
+        <div><b>2</b><span><strong>Ask clearly</strong><br>Define the task, context and desired output.</span></div>
+        <div><b>3</b><span><strong>Inspect the result</strong><br>Separate facts, assumptions and open questions.</span></div>
+        <div><b>4</b><span><strong>Iterate</strong><br>Ask Claude to improve or transform the result.</span></div>
+        <div><b>5</b><span><strong>Connect tools when needed</strong><br>Use external data or actions with appropriate permissions.</span></div>
+        <div><b>6</b><span><strong>Validate before acting</strong><br>Human review remains important for consequential work.</span></div>
+      </div>
+      <div class="takeaway">Key takeaway: <b>The power is not one feature — it is the workflow connecting context, prompting, creation, tools and validation.</b></div>
+    </section>
+
+    <section class="section" id="claude101-patterns">
+      <div class="section-label">14 · QUICK PRACTICE</div>
+      <h2>🧪 Useful Prompt Patterns for Developers</h2>
+      <div class="prompt-list">
+        <div class="prompt-box"><div class="prompt-title">Explain</div><pre><code>Explain this code step by step.
+Use plain English.
+Separate observed behavior from assumptions.</code></pre></div>
+        <div class="prompt-box"><div class="prompt-title">Review</div><pre><code>Review this change for:
+- correctness
+- edge cases
+- error handling
+- maintainability
+- missing tests
+
+Return findings by severity.</code></pre></div>
+        <div class="prompt-box"><div class="prompt-title">Document</div><pre><code>Create a technical design summary.
+Include purpose, inputs, processing,
+dependencies, outputs, error handling
+and open questions.</code></pre></div>
+        <div class="prompt-box"><div class="prompt-title">Challenge</div><pre><code>Act as a critical reviewer.
+What could be wrong with this solution?
+What assumptions are we making?
+What evidence would confirm them?</code></pre></div>
+      </div>
+    </section>
+
+    <section class="section quick" id="claude101-quick-reference">
+      <div class="section-label">15 · ONE-PAGE MENTAL MODEL</div>
+      <h2>🧭 Claude 101 — Quick Reference</h2>
+      <div class="quick-table">
+        <div><b>Claude</b><span>AI assistant for reasoning and generating useful outputs.</span></div>
+        <div><b>Conversation</b><span>Iterative collaboration through natural language.</span></div>
+        <div><b>Prompting</b><span>Task + Context + Desired Result.</span></div>
+        <div><b>Projects</b><span>Dedicated workspace for ongoing work.</span></div>
+        <div><b>Artifacts</b><span>Substantial outputs you can inspect and iterate.</span></div>
+        <div><b>Skills</b><span>Reusable workflows/capabilities for recurring work.</span></div>
+        <div><b>Tools</b><span>Connections that let Claude access data or perform actions.</span></div>
+        <div><b>Enterprise Search</b><span>Find and synthesize connected organizational knowledge.</span></div>
+        <div><b>Research</b><span>Investigate, compare, source and synthesize.</span></div>
+        <div><b>Desktop / Code / API</b><span>Different ways to use Claude depending on the job.</span></div>
+        <div><b>Validation</b><span>Review important outputs; AI inference is not automatically fact.</span></div>
+      </div>
+      <div class="final-card">
+        <div class="big">🎯</div>
+        <h3>The Claude mindset</h3>
+        <p><b>Give context → ask clearly → inspect → iterate → validate → apply.</b></p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>🤖 <b>Claude 101</b> · A Practical Introduction to Claude</p>
+    <p>This is an independent learning resource and is not an official Anthropic course or documentation.</p>
+  </footer>
+
+  
+
+</div>
+
+<script>
+
+(function(){
+  var root = document.getElementById('view-clauddev');
+  var menu = root.querySelector('.contents-btn');
+  var nav = root.querySelector('nav');
+  menu && menu.addEventListener('click', function(){ nav.classList.toggle('open'); });
+  nav && nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ nav.classList.remove('open'); });
+  });
+})();
+
+</script>
+
+<script>
+
+(function(){
+  var root = document.getElementById('view-guide');
+  var menuToggle = root.querySelector('.contents-btn');
+  var nav = root.querySelector('#nav');
+
+  menuToggle && menuToggle.addEventListener('click', function() {
+    nav.classList.toggle('open');
+  });
+
+  nav && nav.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() { nav.classList.remove('open'); });
+  });
+
+  var sections = Array.prototype.slice.call(root.querySelectorAll('.claude101-shell section[id]'));
+  var links = Array.prototype.slice.call(root.querySelectorAll('#nav a'));
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      links.forEach(function(link) { link.classList.remove('active'); });
+      var active = root.querySelector('#nav a[href="#' + entry.target.id + '"]');
+      active && active.classList.add('active');
+    });
+  }, { root: null, rootMargin: '-25% 0px -65% 0px' });
+
+  sections.forEach(function(section) { observer.observe(section); });
+})();
+
+</script>
+
+<script>
+  function route() {
+    var hash = (location.hash || '').replace('#', '');
+    var main = document.getElementById('view-main');
+    var cert = document.getElementById('view-certifications');
+    var guide = document.getElementById('view-guide');
+    main.style.display = 'none';
+    cert.style.display = 'none';
+    guide.style.display = 'none';
+
+    var articles = document.getElementById('view-articles');
+    articles.style.display = 'none';
+    var clauddev = document.getElementById('view-clauddev');
+    clauddev.style.display = 'none';
+    if (hash === 'certifications') {
+      cert.style.display = 'block';
+      window.scrollTo(0, 0);
+    } else if (hash.indexOf('claude101') === 0) {
+      guide.style.display = 'block';
+      if (hash !== 'claude101') {
+        var target = document.getElementById(hash);
+        if (target) { setTimeout(function() { target.scrollIntoView(); }, 0); }
+      } else {
+        window.scrollTo(0, 0);
+      }
+    } else if (hash.indexOf('clauddev') === 0) {
+      clauddev.style.display = 'block';
+      if (hash !== 'clauddev') {
+        var target2 = document.getElementById(hash);
+        if (target2) { setTimeout(function() { target2.scrollIntoView(); }, 0); }
+      } else {
+        window.scrollTo(0, 0);
+      }
+    } else if (hash === 'articles') {
+      articles.style.display = 'block';
+      window.scrollTo(0, 0);
+    } else {
+      main.style.display = 'block';
+      if (hash) {
+        var target = document.getElementById(hash);
+        if (target) { setTimeout(function() { target.scrollIntoView(); }, 0); }
+      }
+    }
+  }
+  window.addEventListener('hashchange', route);
+  window.addEventListener('DOMContentLoaded', route);
+</script>
+
+</body>
+</html>
